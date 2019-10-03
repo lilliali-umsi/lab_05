@@ -88,15 +88,33 @@ file_name_list = ["file1", "file2", "file3"]
 file_type = "txt"
 unique_lines = []
 all_files = []
-
+all_lines=[]
+all_lines_string = []
+unique_lines_list = []
 for file in file_name_list:
     all_files.append(concatenate_name_type(file, file_type))
+print(all_files)
 
 for file in all_files:
     #print(file)
-    file_opening = open(file)
-    unique_lines.append(file_opening.readlines())
-    file_opening.close()
+    file_opening = open(file, 'r')
+    all_lines.append(file_opening.readlines())
+    for line in all_lines:
+        for x in line:
+            all_lines_string.append(x.split(','))
+print(all_lines_string)
+
+for line in all_lines_string:
+    if line not in unique_lines_list:
+        unique_lines_list.append(line)
+for line in unique_lines_list:
+    for x in line:
+        unique_lines.append(x)
+
+
+#for line in unique_lines:
+    #print(line)
+    #file_opening.close()
 write_into_file('summary.txt',unique_lines)
 print(unique_lines)
 # END PROBLEM 3 SOLUTION
