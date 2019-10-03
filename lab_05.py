@@ -40,20 +40,20 @@ print(full_file_name)
 # BEGIN PROBLEM 2 SOLUTION
 
 def write_into_file(filename, file_content):
-    file_open = open(filename, 'w')
-    #for line in file_content:
-    file_open.write(f"{file_content}")
-    file_open.close()
-
+    path = filename
+    file_handle = open(path)
+    lines = file_handle.readlines()
+    file_handle.close()
+    for line in lines[-2:]:
+        file_content.append(line)
 
 last_two_lines = []
-file_handle = open(full_file_name)
-file_content = file_handle.readlines()
-last_two_lines = file_content[1:]
-filename = 'file2.txt'
-write_into_file(filename,last_two_lines)
-print(last_two_lines)
-
+path = 'file2.txt'
+file_handle = open(path, 'w')
+write_into_file(full_file_name, last_two_lines)
+file_handle.write(f"{last_two_lines}")
+file_handle.close()
+#print(last_two_lines)
 
 
 # END PROBLEM 2 SOLUTION
